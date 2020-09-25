@@ -39,7 +39,7 @@ func SendMail(email, reciver string) error {
 
 	//邮件附件
 	//m.Attach("C:\\Users\\User\\Pictures\\Saved Pictures\\1.jpg")
-	d := gomail.NewDialer("smtp.qq.com", 465, "邮箱号", "密码")
+	d := gomail.NewDialer("smtp.qq.com", 465, "邮箱号", "授权码")
 
 
 	//邮件发送服务器信息,使用授权码而非密码
