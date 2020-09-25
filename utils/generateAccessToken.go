@@ -52,8 +52,11 @@ func GenerateAccessToken(userId string,mytoken chan string) {
 				UpdateAt: time.Now().Add(8*time.Hour),
 				ClientInfo: "",
 			}
-			db.Exec("insert into app_token set id=?,create_user=?,access_token=?,expire_at=?,client_info=?,create_at=?,update_at=?",
+			_,erri:=db.Exec("insert into app_token set id=?,create_user=?,access_token=?,expire_at=?,client_info=?,create_at=?,update_at=?",
 				token.Id,token.CreateUser,token.AccessToken,token.ExpireAt,token.ClientInfo,token.CreateAt,token.UpdateAt)
+			if err != nil{
+				panic(erri.Error())
+			}
 		}()
 		mytoken<-new_uuid
 		return

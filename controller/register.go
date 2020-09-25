@@ -26,8 +26,8 @@ func Register(ctx *gin.Context){
 	}
 	sex := ctx.PostForm("sex")
 	birthday := ctx.DefaultPostForm("birthday","")
-	createTime := helper.TimeFormat(time.Now())
-	updateTime := helper.TimeFormat(time.Now())
+	createTime := time.Now().Add(8*time.Hour)
+	updateTime := time.Now().Add(8*time.Hour)
 	var user = entity.User {
 		Id: id,
 		UserName: userName,

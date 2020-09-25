@@ -19,7 +19,7 @@ func Login(ctx *gin.Context) gin.H {
 	var users []entity.User
 
 	db := database.Db
-	err := db.Select(&users, "select * from users where (user_name? or email=? or mobile=?) and password=?", username, username, username, password)
+	err := db.Select(&users, "select * from users where (user_name=? or email=? or mobile=?) and password=?", username, username, username, password)
 	num := len(users)
 	if err != nil {
 		throw := entity.Throw{
