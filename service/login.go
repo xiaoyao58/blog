@@ -4,6 +4,7 @@ import (
 	"blog/database"
 	"blog/entity"
 	"blog/utils"
+	"fmt"
 	"github.com/gin-gonic/gin"
 )
 
@@ -39,12 +40,14 @@ func Login(ctx *gin.Context) gin.H {
 	}
 
 	u := users[0]
+	fmt.Println(u)
 	mytoken := make(chan string)
 	go utils.GenerateAccessToken(u.Id, mytoken)
 	token := <-mytoken
 
 	g := gin.H{
 		"access_token": token,
+		"user_id":      u.Id,
 		"user_name":    u.UserName,
 		"avatar":       u.Avatar,
 		"emali":        u.Email,

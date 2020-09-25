@@ -83,6 +83,7 @@ func Register(user entity.User, ctx *gin.Context) {
 
 
 	_, err := db.Exec("insert into users set id=?,user_name=?,password=?,nick_name=?,real_name=?,avatar=?,mobile=?,email=?,sex=?,birthday=?,create_time=?,update_time=?",user.Id,user.UserName,user.Password,user.NickName,user.RealName,user.Avatar,user.Mobile,user.Email,user.Sex,user.Birthday,user.CreateTime,user.UpdateTime )
+	r.Do("del",registMethod)
 	if err != nil {
 		throw.Code = 422
 		throw.Msg = err.Error()

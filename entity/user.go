@@ -1,7 +1,5 @@
 package entity
 
-import "time"
-
 type User struct{
 	Id string `db:"id",json:"id"`
 	UserName string `db:"user_name"`
@@ -13,8 +11,8 @@ type User struct{
 	Email string `db:"email"`
 	Sex string `db:"sex"`
 	Birthday string `db:"birthday"`
-	CreateTime time.Time `db:"create_time"`
-	UpdateTime time.Time `db:"update_time"`
+	CreateTime string `db:"create_time"`
+	UpdateTime string `db:"update_time"`
 }
 
 

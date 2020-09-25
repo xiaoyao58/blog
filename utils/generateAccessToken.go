@@ -47,9 +47,9 @@ func GenerateAccessToken(userId string,mytoken chan string) {
 				Id: helper.Uuid(),
 				CreateUser: userId,
 				AccessToken: new_uuid,
-				ExpireAt: time.Now().Add(32*time.Hour),
-				CreateAt: time.Now().Add(8*time.Hour),
-				UpdateAt: time.Now().Add(8*time.Hour),
+				ExpireAt: helper.TimeFormat(time.Now().Add(32*time.Hour)),
+				CreateAt: helper.TimeFormat(time.Now().Add(8*time.Hour)),
+				UpdateAt: helper.TimeFormat(time.Now().Add(8*time.Hour)),
 				ClientInfo: "",
 			}
 			_,erri:=db.Exec("insert into app_token set id=?,create_user=?,access_token=?,expire_at=?,client_info=?,create_at=?,update_at=?",
