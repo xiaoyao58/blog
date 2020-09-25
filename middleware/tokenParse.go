@@ -21,7 +21,7 @@ func TokenParse() gin.HandlerFunc {
 		}
 
 		if tokens == nil || tokens[0].ExpireAt<time.Now().Format("2006-01-02 15:04:05"){
-			ctx.JSON(200, entity.PostR{Code: 422, Msg: "access_token错误或已过期!"})
+			ctx.JSON(200, entity.Throw{Code: 422, Msg: "access_token错误或已过期!"})
 			panic("token error")
 		}
 		var users []entity.User

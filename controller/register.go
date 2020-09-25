@@ -43,16 +43,16 @@ func Register(ctx *gin.Context){
 		UpdateTime: updateTime,
 	}
 	service.Register(user,ctx)
-	var postr entity.PostR
-	postr.Code=201
-	postr.Msg="注册成功!"
-	ctx.JSON(200,postr)
+	var throw entity.Throw
+	throw.Code=201
+	throw.Msg="注册成功!"
+	ctx.JSON(200,throw)
 }
 
 func SendMail(ctx *gin.Context){
 	service.SendMail(ctx)
-	var postr entity.PostR
-	postr.Code = 201
-	postr.Msg = "验证码已发送"
-	ctx.JSON(200,postr)
+	var throw entity.Throw
+	throw.Code = 201
+	throw.Msg = "验证码已发送"
+	ctx.JSON(200,throw)
 }

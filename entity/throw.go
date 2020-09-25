@@ -1,6 +1,6 @@
 package entity
 
-type PostR struct{
+type Throw struct{
 	Code int32
 	Msg interface{}
 }
