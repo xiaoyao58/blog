@@ -6,11 +6,12 @@ import (
 	"github.com/gin-gonic/gin"
 )
 
-func init(){
+func init() {
 	router := gin.Default()
-	router.POST("/blog/register",func(ctx *gin.Context){controller.Register(ctx)})
-	router.POST("/blog/sendmail",func(ctx *gin.Context){controller.SendMail(ctx)})
-	router.GET("/user/getAll",middleware.TokenParse(),func(ctx *gin.Context){controller.GetAllUser(ctx)})
+	router.POST("/blog/register", func(ctx *gin.Context) { controller.Register(ctx) })
+	router.POST("/blog/login", func(ctx *gin.Context) { controller.Login(ctx) })
+	router.POST("/blog/sendmail", func(ctx *gin.Context) { controller.SendMail(ctx) })
+	router.GET("/user/getAll", middleware.TokenParse(), func(ctx *gin.Context) { controller.GetAllUser(ctx) })
 	//router.GET("/user/getMine",middleware.TokenParse(),func(ctx *gin.Context){controller.GetMine(ctx)})
 	router.Run("localhost:8080")
 }

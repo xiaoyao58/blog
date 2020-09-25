@@ -8,7 +8,7 @@ import (
 	"time"
 )
 
-func generateAccessToken(userId string,mytoken chan string) {
+func GenerateAccessToken(userId string,mytoken chan string) {
 	c:=make(chan string)
 	var tokens [] entity.AppToken
 	db := database.Db
