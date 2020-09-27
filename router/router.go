@@ -4,9 +4,13 @@ import (
 	"blog/controller"
 	"blog/middleware"
 	"github.com/gin-gonic/gin"
+	"io"
+	"os"
 )
 
 func init() {
+	f,_:=os.OpenFile("./logs/web.log",os.O_RDWR|os.O_CREATE,0666)
+	gin.DefaultWriter = io.MultiWriter(f,os.Stdout)
 	router := gin.Default()
 	router.Static("/static/avatar","./static/avatar")
 	router.Static("/static/image","./static/image")

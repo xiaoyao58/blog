@@ -4,7 +4,7 @@ import (
 	"blog/database"
 	"blog/entity"
 	"blog/utils"
-	"fmt"
+	"blog/utils/logs"
 	"github.com/gin-gonic/gin"
 )
 
@@ -28,6 +28,7 @@ func Login(ctx *gin.Context) gin.H {
 			Msg:  err.Error(),
 		}
 		ctx.JSON(200, throw)
+		logs.Error.Println(err.Error())
 		panic(err.Error())
 	}
 	if num <= 0 {
@@ -36,11 +37,11 @@ func Login(ctx *gin.Context) gin.H {
 			Msg:  "用户名或密码错误",
 		}
 		ctx.JSON(200, throw)
+		logs.Error.Println("用户名或密码错误")
 		panic("用户名或密码错误")
 	}
 
 	u := users[0]
-	fmt.Println(u)
 	mytoken := make(chan string)
 	go utils.GenerateAccessToken(u.Id, mytoken)
 	token := <-mytoken

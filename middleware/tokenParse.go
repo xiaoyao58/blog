@@ -3,6 +3,7 @@ package middleware
 import (
 	"blog/database"
 	"blog/entity"
+	"blog/utils/logs"
 	"github.com/gin-gonic/gin"
 	"time"
 )
@@ -17,6 +18,7 @@ func TokenParse() gin.HandlerFunc {
 		dbErr := database.Db.Select(&tokens, "select * from app_token where access_token=?", accessToken)
 		if dbErr != nil {
 			ctx.JSON(200, dbErr.Error())
+			logs.Error.Println(dbErr.Error())
 			panic(dbErr.Error())
 		}
 

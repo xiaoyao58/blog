@@ -3,18 +3,17 @@ package service
 import (
 	"blog/database"
 	"blog/entity"
+	"blog/utils/logs"
 	"github.com/gin-gonic/gin"
-	"log"
 )
 
 func GetAllUser() []gin.H{
 	var users []entity.User
-
+	logs.Info.Println("test info")
 	err:= database.Db.Select(&users,"select * from users")
 	if err!=nil{
-		log.Println("get users error:"+err.Error())
+		logs.Error.Println("get users error:"+err.Error())
 	}
-
 	var user_list []gin.H
 	for _,u:=range users{
 		f:=gin.H{

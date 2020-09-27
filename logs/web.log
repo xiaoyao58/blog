@@ -1,0 +1,25 @@
+[GIN-debug] [WARNING] Creating an Engine instance with the Logger and Recovery middleware already attached.
+
+[GIN-debug] [WARNING] Running in "debug" mode. Switch to "release" mode in production.
+ - using env:	export GIN_MODE=release
+ - using code:	gin.SetMode(gin.ReleaseMode)
+
+[GIN-debug] GET    /static/avatar/*filepath  --> github.com/gin-gonic/gin.(*RouterGroup).createStaticHandler.func1 (3 handlers)
+[GIN-debug] HEAD   /static/avatar/*filepath  --> github.com/gin-gonic/gin.(*RouterGroup).createStaticHandler.func1 (3 handlers)
+[GIN-debug] GET    /static/image/*filepath   --> github.com/gin-gonic/gin.(*RouterGroup).createStaticHandler.func1 (3 handlers)
+[GIN-debug] HEAD   /static/image/*filepath   --> github.com/gin-gonic/gin.(*RouterGroup).createStaticHandler.func1 (3 handlers)
+[GIN-debug] POST   /blog/register            --> blog/router.init.0.func1 (3 handlers)
+[GIN-debug] POST   /blog/login               --> blog/router.init.0.func2 (3 handlers)
+[GIN-debug] POST   /blog/sendmail            --> blog/router.init.0.func3 (3 handlers)
+[GIN-debug] GET    /blog/user/getAll         --> blog/router.init.0.func4 (4 handlers)
+[GIN-debug] Listening and serving HTTP on localhost:8080
+[GIN] 2020/09/27 - 14:40:30 | 200 |     85.4562ms |       127.0.0.1 | POST     "/blog/login"
+[GIN-debug] [WARNING] Headers were already written. Wanted to override status code 200 with 500
+[GIN] 2020/09/27 - 14:40:58 | 500 |      23.998ms |       127.0.0.1 | POST     "/blog/login"
+[GIN] 2020/09/27 - 14:42:23 | 200 |     44.9451ms |       127.0.0.1 | POST     "/blog/login"
+[GIN] 2020/09/27 - 14:42:31 | 200 |      59.719ms |       127.0.0.1 | GET      "/blog/user/getAll?access_token=7a01c5TVsul"
+27.0.0.1 | GET      "/blog/user/getAll?access_token=7a01c5TVsul"
+[GIN-debug] [WARNING] Headers were already written. Wanted to override status code 200 with 500
+[GIN] 2020/09/27 - 14:33:43 | 500 |      5.9946ms |       127.0.0.1 | POST     "/blog/login"
+ 48.0337ms |       127.0.0.1 | GET      "/blog/user/getAll?access_token=7a01c5TVsul"
+[GIN] 2020/09/27 - 13:46:12 | 200 |     50.3054ms |       127.0.0.1 | GET      "/blog/user/getAll?access_token=7a01c5TVsul"

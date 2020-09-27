@@ -4,7 +4,7 @@ import (
 	"blog/database"
 	"blog/entity"
 	"blog/utils"
-	"fmt"
+	"blog/utils/logs"
 	"github.com/garyburd/redigo/redis"
 	"github.com/gin-gonic/gin"
 )
@@ -23,6 +23,7 @@ func Register(user entity.User, ctx *gin.Context) {
 			throw.Code = 422
 			throw.Msg = err.Error()
 			ctx.JSON(200, throw)
+			logs.Error.Println(err.Error())
 			panic(err.Error())
 		}
 		numName += len(users)
@@ -35,6 +36,7 @@ func Register(user entity.User, ctx *gin.Context) {
 			throw.Code = 422
 			throw.Msg = err.Error()
 			ctx.JSON(200, throw)
+			logs.Error.Println(err.Error())
 			panic(err.Error())
 		}
 		numMethod += len(users)
@@ -54,6 +56,7 @@ func Register(user entity.User, ctx *gin.Context) {
 		throw.Code = 403
 		throw.Msg = "邮箱或手机号已被注册！"
 		ctx.JSON(200, throw)
+		logs.Error.Println("邮箱或手机号已被注册！")
 		panic("邮箱或手机号已被注册！")
 	}
 
@@ -62,6 +65,7 @@ func Register(user entity.User, ctx *gin.Context) {
 		throw.Code = 422
 		throw.Msg = err_r.Error()
 		ctx.JSON(200, throw)
+		logs.Error.Println(err_r.Error())
 		panic(err_r.Error())
 	}
 	defer r.Close()
@@ -71,6 +75,7 @@ func Register(user entity.User, ctx *gin.Context) {
 		throw.Code = 422
 		throw.Msg = "验证码不正确"
 		ctx.JSON(200, throw)
+		logs.Error.Println("验证码获取失败")
 		panic("验证码获取失败")
 	}
 	verifyCode := ctx.PostForm("verify_code")
@@ -78,6 +83,7 @@ func Register(user entity.User, ctx *gin.Context) {
 		throw.Code = 422
 		throw.Msg = "验证码不正确"
 		ctx.JSON(200, throw)
+		logs.Error.Println("验证码不正确")
 		panic("验证码不正确")
 	}
 
@@ -88,6 +94,7 @@ func Register(user entity.User, ctx *gin.Context) {
 		throw.Code = 422
 		throw.Msg = err.Error()
 		ctx.JSON(200, throw)
+		logs.Error.Println(err.Error())
 		panic(err.Error())
 	}
 	return
@@ -97,12 +104,12 @@ func Register(user entity.User, ctx *gin.Context) {
 func SendMail(ctx *gin.Context){
 	username := ctx.PostForm("user_name")
 	email := ctx.PostForm("email")
-	fmt.Println(email)
 	throw := new(entity.Throw)
 	if username=="" || email == ""{
 		throw.Code = 422
 		throw.Msg = "用户名或邮箱不能为空"
 		ctx.JSON(200,throw)
+		logs.Error.Println("用户名或邮箱不能为空")
 		panic("用户名或邮箱不能为空")
 	}
 	err := utils.SendMail(email,email)
@@ -110,6 +117,7 @@ func SendMail(ctx *gin.Context){
 		throw.Code = 500
 		throw.Msg = err.Error()
 		ctx.JSON(200,throw)
+		logs.Error.Println(err.Error())
 		panic(err.Error())
 	}
 	return
