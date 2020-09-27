@@ -9,7 +9,6 @@ import (
 
 func GetAllUser() []gin.H{
 	var users []entity.User
-	logs.Info.Println("test info")
 	err:= database.Db.Select(&users,"select * from users")
 	if err!=nil{
 		logs.Error.Println("get users error:"+err.Error())
